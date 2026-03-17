@@ -1,4 +1,4 @@
-# Régression
+# Régression Simple  avec Burn
 Cet exemple vous montre comment :
 - Définir un jeu de données personnalisé pour les problèmes de régression. Nous implémentons le
   [California Housing Dataset](https://huggingface.co/datasets/gvlassis/california_housing) depuis
@@ -8,12 +8,19 @@ Cet exemple vous montre comment :
   avec mise à l'échelle min-max des features.
 - Définir un modèle de réseau de neurones simple pour la régression en utilisant les Modules Burn.
 
-> **Note**  
+
+> 🦀
+> Il faut avoir Rust installé pour utiliser Burn. Allez-voir [ici](https://doc.rust-lang.org/book/ch01-01-installation.html) si ce n'est pas le cas.
+
+> 🐍
 > Cet exemple utilise la bibliothèque [`datasets`](https://huggingface.co/docs/datasets/index)
 > de HuggingFace pour télécharger les jeux de données. Assurez-vous d'avoir
 > [Python](https://www.python.org/downloads/) installé sur votre ordinateur.
 
-L'exemple peut être exécuté ainsi :
+> 🔥
+> Pour toute autre documentation, allez voir la documentation de Burn: [le Burn Book](https://burn.dev/books/burn/overview.html)
+
+Installez et ouvrez le repertoire :
 ```bash
 git clone https://github.com/cia-ulaval/tutoriel-burn.git
 cd tutoriel-burn
@@ -26,6 +33,8 @@ Regardez dans `model.rs`, la structure `RegressionModel`. Elle est composée de 
 - 1 couche d'activation
 
 Les poids et biais de ces neurones sont entraînés avec l'entraînement décrit dans `training.rs`.
+
+### Execution
 
 > Utilisez le flag `--release` pour vraiment accélérer l'entraînement !
 
