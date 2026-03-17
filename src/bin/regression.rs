@@ -20,9 +20,19 @@ mod ndarray {
     }
 }
 
+#[cfg(feature = "rocm")]
+mod rocm {
+    use burn::backend::Rocm;
+
+    pub fn run() {
+        let device = Default::default();
+        super::run::<Rocm>(device);
+    }
+}
+
 #[cfg(feature = "cuda")]
 mod cuda {
-    use burn::backend::{Autodiff, Cuda};
+    use burn::backend::Cuda;
 
     pub fn run() {
         let device = Default::default();
@@ -54,6 +64,12 @@ fn main() {
         feature = "ndarray-blas-accelerate",
     ))]
     ndarray::run();
+
+    #[cfg(feature = "cuda")]
+    cuda::run();
+
+    #[cfg(feature = "rocm")]
+    rocm::run();
 
     #[cfg(any(feature = "wgpu", feature = "metal"))]
     wgpu::run();

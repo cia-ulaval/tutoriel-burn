@@ -18,19 +18,31 @@ L'exemple peut être exécuté ainsi :
 ```bash
 git clone https://github.com/cia-ulaval/tutoriel-burn.git
 cd tutoriel-burn
+```
 
-# Utilisez le flag --release pour vraiment accélérer l'entraînement.
+> Utilisez le flag --release pour vraiment accélérer l'entraînement !
 
+Executer avec `ndarray`, sur le CPU :
+```bash
 echo "Utilisation du backend ndarray"
-cargo run --features ndarray                # Backend CPU NdArray - f32 - fil d'exécution unique
-cargo run --features ndarray-blas-openblas  # Backend CPU NdArray - f32 - blas avec openblas
-cargo run --features ndarray-blas-netlib    # Backend CPU NdArray - f32 - blas avec netlib
+cargo run --features ndarray             # Backend CPU NdArray - f32 - fil d'exécution unique
+```
 
-echo "Utilisation du backend tch"
-export TORCH_CUDA_VERSION=cu128             # Définir la version de cuda
-cargo run --features tch-gpu                # Backend GPU Tch - f32
-cargo run --features tch-cpu                # Backend CPU Tch - f32
+Executer sur un GPU NVIDIA avec le backend `cuda` :
+```bash
+echo "Utilisation du backend cuda"
+export TORCH_CUDA_VERSION=cu128          # Définir la version de cuda
+cargo run --features cuda                # Backend CUDA
+```
 
+Executer sur un GPU AMD avec le backend `rocm` :
+```bash
+echo "Utilisation du backend rocm"
+cargo run --features rocm                # Backend ROCM
+```
+
+Executer sur n'importe quelle autre plateforme avec le backend `wgpu` :
+```bash
 echo "Utilisation du backend wgpu"
 cargo run --features wgpu
 ```
