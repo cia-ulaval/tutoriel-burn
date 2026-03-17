@@ -1,34 +1,36 @@
-# Regression
-
-The example shows you how to:
-
-- Define a custom dataset for regression problems. We implement the
-  [California Housing Dataset](https://huggingface.co/datasets/gvlassis/california_housing) from
-  HuggingFace hub. The dataset is also available as part of toy regression datasets in
-  sklearn[datasets](https://scikit-learn.org/stable/datasets/real_world.html#california-housing-dataset).
-- Create a data pipeline from a raw dataset to a batched fast DataLoader with min-max feature
-  scaling.
-- Define a Simple NN model for regression using Burn Modules.
+# Régression
+Cet exemple vous montre comment :
+- Définir un jeu de données personnalisé pour les problèmes de régression. Nous implémentons le
+  [California Housing Dataset](__https://huggingface.co/datasets/gvlassis/california_housing__) depuis
+  HuggingFace hub. Le jeu de données est également disponible parmi les jeux de données de régression
+  jouets dans sklearn[datasets](__https://scikit-learn.org/stable/datasets/real_world.html#california-housing-dataset__).
+- Créer un pipeline de données depuis un jeu de données brut jusqu'à un DataLoader rapide par lots
+  avec mise à l'échelle min-max des features.
+- Définir un modèle de réseau de neurones simple pour la régression en utilisant les Modules Burn.
 
 > **Note**  
-> This example makes use of the HuggingFace [`datasets`](https://huggingface.co/docs/datasets/index)
-> library to download the datasets. Make sure you have [Python](https://www.python.org/downloads/)
-> installed on your computer.
+> Cet exemple utilise la bibliothèque [`datasets`](__https://huggingface.co/docs/datasets/index__)
+> de HuggingFace pour télécharger les jeux de données. Assurez-vous d'avoir
+> [Python](__https://www.python.org/downloads/__) installé sur votre ordinateur.
 
-The example can be run like so:
+L'exemple peut être exécuté ainsi :
 
 ```bash
-git clone https://github.com/tracel-ai/burn.git
-cd burn
-# Use the --release flag to really speed up training.
-echo "Using ndarray backend"
-cargo run --example regression --release --features ndarray                # CPU NdArray Backend - f32 - single thread
-cargo run --example regression --release --features ndarray-blas-openblas  # CPU NdArray Backend - f32 - blas with openblas
-cargo run --example regression --release --features ndarray-blas-netlib    # CPU NdArray Backend - f32 - blas with netlib
-echo "Using tch backend"
-export TORCH_CUDA_VERSION=cu128                                            # Set the cuda version
-cargo run --example regression --release --features tch-gpu                # GPU Tch Backend - f32
-cargo run --example regression --release --features tch-cpu                # CPU Tch Backend - f32
-echo "Using wgpu backend"
-cargo run --example regression --release --features wgpu
+git clone https://github.com/cia-ulaval/tutoriel-burn.git
+cd tutoriel-burn
+
+# Utilisez le flag --release pour vraiment accélérer l'entraînement.
+
+echo "Utilisation du backend ndarray"
+cargo run --features ndarray                # Backend CPU NdArray - f32 - fil d'exécution unique
+cargo run --features ndarray-blas-openblas  # Backend CPU NdArray - f32 - blas avec openblas
+cargo run --features ndarray-blas-netlib    # Backend CPU NdArray - f32 - blas avec netlib
+
+echo "Utilisation du backend tch"
+export TORCH_CUDA_VERSION=cu128             # Définir la version de cuda
+cargo run --features tch-gpu                # Backend GPU Tch - f32
+cargo run --features tch-cpu                # Backend CPU Tch - f32
+
+echo "Utilisation du backend wgpu"
+cargo run --features wgpu
 ```
