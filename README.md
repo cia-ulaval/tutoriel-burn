@@ -28,6 +28,12 @@ echo "Utilisation du backend ndarray"
 cargo run --features ndarray             # Backend CPU NdArray - f32 - fil d'exécution unique
 ```
 
+Executer sur n'importe quelle plateforme (GPU, CPU...) avec le backend `wgpu` :
+```bash
+echo "Utilisation du backend wgpu"
+cargo run --features wgpu
+```
+
 Executer sur un GPU NVIDIA avec le backend `cuda` :
 ```bash
 echo "Utilisation du backend cuda"
@@ -41,8 +47,10 @@ echo "Utilisation du backend rocm"
 cargo run --features rocm                # Backend ROCM
 ```
 
-Executer sur n'importe quelle autre plateforme avec le backend `wgpu` :
+Utiliser tch backend (CUDA, Metal):
 ```bash
-echo "Utilisation du backend wgpu"
-cargo run --features wgpu
+cargo run --features tch-gpu
 ```
+
+## Étape 2 : jouer avec les hyperparamètres du modèle
+

@@ -40,6 +40,19 @@ mod cuda {
     }
 }
 
+#[cfg(feature = "tch-gpu")]
+mod tch_gpu {
+    use burn::backend::libtorch::{LibTorch, LibTorchDevice};
+
+    pub fn run() {
+        #[cfg(not(target_os = "macos"))]
+        let device = LibTorchDevice::Cuda(0);
+        #[cfg(target_os = "macos")]
+        let device = LibTorchDevice::Mps;
+        super::run::<LibTorch>(device);
+    }
+}
+
 #[cfg(any(feature = "wgpu", feature = "metal"))]
 mod wgpu {
     use burn::backend::wgpu::{Wgpu, WgpuDevice};
@@ -68,8 +81,8 @@ fn main() {
     #[cfg(feature = "cuda")]
     cuda::run();
 
-    #[cfg(feature = "rocm")]
-    rocm::run();
+    #[cfg(feature = "tch-gpu")]
+    tch_gpu::run();
 
     #[cfg(any(feature = "wgpu", feature = "metal"))]
     wgpu::run();

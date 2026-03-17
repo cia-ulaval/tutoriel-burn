@@ -20,6 +20,7 @@ wgpu = ["burn/wgpu"]
 metal = ["burn/metal"]
 cuda = ["burn/cuda"]
 rocm = ["burn/rocm"]
+tch-gpu = ["burn/tch"]
 
 [dependencies]
 burn = { version = "0.20", features = [
