@@ -1,0 +1,41 @@
+[package]
+authors = ["aasheeshsingh <aasheeshdtu@gmail.com>"]
+edition = "2024"
+license = "MIT OR Apache-2.0"
+readme = "README.md"
+version = "0.20.1"
+name = "simple-regression"
+publish = false
+
+[[bin]]
+name = "regression"
+
+[features]
+default = ["burn/dataset", "burn/sqlite-bundled"]
+ndarray = ["burn/ndarray"]
+ndarray-blas-accelerate = ["burn/ndarray", "burn/accelerate"]
+ndarray-blas-netlib = ["burn/ndarray", "burn/blas-netlib"]
+ndarray-blas-openblas = ["burn/ndarray", "burn/openblas"]
+wgpu = ["burn/wgpu"]
+metal = ["burn/metal"]
+cuda = ["burn/cuda"]
+rocm = ["burn/rocm"]
+
+[dependencies]
+burn = { version = "0.20", features = [
+    "std",
+    "tui",
+    "train",
+    "vision",
+    "fusion",
+], default-features = false }
+
+# Serialization
+serde = { version = "1.0.228", default-features = false, features = [
+    "std",
+    "derive",
+] }
+
+# Displaying results
+textplots = "0.8.7"
+rgb = "0.8.52"
