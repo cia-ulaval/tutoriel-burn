@@ -29,6 +29,7 @@ burn = { version = "0.20", features = [
     "train",
     "vision",
     "fusion",
+    "autotune",
 ], default-features = false }
 
 # Serialization
